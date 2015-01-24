@@ -26,7 +26,7 @@ public class Footprint : MonoBehaviour {
 	void Update () {
 		float elapsedTime = Time.time - time;
 		if(elapsedTime > fadeTime)
-			fade += elapsedTime;
+			fade += Time.deltaTime;
 
 		transform.renderer.material.color = Color.Lerp (originalColor, transparentColor, fade);
 
