@@ -12,4 +12,10 @@ public class Finish : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("FINISH!");
+        Application.LoadLevel("Finish");
+    }
 }
