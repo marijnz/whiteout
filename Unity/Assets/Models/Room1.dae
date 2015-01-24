@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.73.0 commit date:2015-01-07, commit time:13:17, hash:b4d8fb5</authoring_tool>
+    </contributor>
+    <created>2015-01-24T16:49:01</created>
+    <modified>2015-01-24T16:49:01</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Wall-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.3782488 0.4667759 0.8 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="WallTop-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.8 0.8 0.8 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Wall-material" name="Wall">
+      <instance_effect url="#Wall-effect"/>
+    </material>
+    <material id="WallTop-material" name="WallTop">
+      <instance_effect url="#WallTop-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube-mesh" name="Cube">
+      <mesh>
+        <source id="Cube-mesh-positions">
+          <float_array id="Cube-mesh-positions-array" count="48">4.139631 4.139631 0.01784634 4.139631 -4.139631 0.01784634 -4.139632 -4.139631 0.01784634 -4.13963 4.139633 0.01784634 5.000002 4.999998 5 4.999997 -5.000003 5 -5.000002 -4.999998 5 -5 5 5 4.801453 4.801449 5 4.801448 -4.801454 5 -4.801453 -4.801449 5 -4.801451 4.801451 5 3.9398 3.939796 0.1895804 3.939796 -3.9398 0.1895804 -3.939799 -3.939797 0.1895804 -3.939798 3.939798 0.1895804</float_array>
+          <technique_common>
+            <accessor source="#Cube-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube-mesh-normals">
+          <float_array id="Cube-mesh-normals-array" count="84">0 0 -1 0 0 1 0.9854146 -5.1687e-7 -0.1701709 -4.69882e-7 -0.9854146 -0.1701711 -0.9854145 2.34941e-7 -0.1701715 2.27017e-7 0.9854145 -0.1701709 0.9843336 -1.78702e-7 0.176316 0 0 1 0 0 1 0 0 1 0 0 1 4.46755e-7 0.9843336 0.176316 -1.9551e-7 -0.9843336 0.1763159 -0.9843336 5.06323e-7 0.176316 0 0 -1 0 0 1 0.9854145 0 -0.1701717 0 -0.9854143 -0.1701718 -0.9854145 2.2783e-7 -0.1701716 2.35783e-7 0.9854146 -0.1701709 0.9843336 -1.9551e-7 0.176316 0 0 1 0 0 1 0 0 1 0 0 1 4.39898e-7 0.9843337 0.176316 -2.10511e-7 -0.9843336 0.176316 -0.9843336 4.88776e-7 0.176316</float_array>
+          <technique_common>
+            <accessor source="#Cube-mesh-normals-array" count="28" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube-mesh-vertices">
+          <input semantic="POSITION" source="#Cube-mesh-positions"/>
+        </vertices>
+        <polylist material="Wall-material" count="20">
+          <input semantic="VERTEX" source="#Cube-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube-mesh-normals" offset="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>1 0 2 0 3 0 4 2 5 2 1 2 5 3 6 3 2 3 6 4 7 4 3 4 0 5 3 5 7 5 10 6 14 6 15 6 15 10 14 10 13 10 9 11 13 11 14 11 8 12 11 12 15 12 8 13 12 13 13 13 0 14 1 14 3 14 0 16 4 16 1 16 1 17 5 17 2 17 2 18 6 18 3 18 4 19 0 19 7 19 11 20 10 20 15 20 12 24 15 24 13 24 10 25 9 25 14 25 12 26 8 26 15 26 9 27 8 27 13 27</p>
+        </polylist>
+        <polylist material="WallTop-material" count="8">
+          <input semantic="VERTEX" source="#Cube-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube-mesh-normals" offset="1"/>
+          <vcount>3 3 3 3 3 3 3 3 </vcount>
+          <p>6 1 10 1 11 1 5 7 9 7 10 7 7 8 11 8 8 8 4 9 8 9 9 9 7 15 6 15 11 15 6 21 5 21 10 21 4 22 7 22 8 22 5 23 4 23 9 23</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Cube" name="Cube" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cube-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Wall-material" target="#Wall-material"/>
+              <instance_material symbol="WallTop-material" target="#WallTop-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

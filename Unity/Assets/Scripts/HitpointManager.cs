@@ -3,14 +3,17 @@ using System.Collections;
 
 public class HitpointManager : MonoBehaviour {
 
+    public static HitpointManager Instance;
+
+
     [SerializeField]
     Hitpoint HitpointPrefab;
 
     public Vector2 SpawnAt;
 
 	// Use this for initialization
-	void Start () {
-       // SpawnHitPoint(new Vector2(1, 1));
+	void Awake () {
+        Instance = this;
 	}
 	
 	// Update is called once per frame
