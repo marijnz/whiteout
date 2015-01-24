@@ -8,20 +8,13 @@ public class MoveMe : MonoBehaviour {
 	KeyCode moveDown = KeyCode.S;
 	KeyCode moveRight = KeyCode.D;
 	KeyCode moveLeft = KeyCode.A;
-	private int impendingDoom = 0;
 	private float angle;
-    public int MaxHits = 50;	
+
+
 	// Use this for initialization
-	void Start () {
-		
-	}
-	void OnCollisionEnter2D(Collision2D collision){
-		impendingDoom++;
+    void Start() {
 
-        HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point);
-	}
-
-
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -42,7 +35,6 @@ public class MoveMe : MonoBehaviour {
 		if(CustomInputManager.ButtonGotPressed(CustomInputManager.Token.Interact, 1)){
 			print ("What do we do now?");
 		}
-		if (impendingDoom > MaxHits)
-			Application.LoadLevel ("GameOver");
+		
 	}
 }
