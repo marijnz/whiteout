@@ -57,11 +57,11 @@ Shader "Shader Forge/FogOfWar" {
             fixed4 frag(VertexOutput i) : COLOR {
 ////// Lighting:
 ////// Emissive:
-                float2 node_1076 = i.uv0;
-                float4 node_768 = tex2D(_FogTexture,TRANSFORM_TEX(node_1076.rg, _FogTexture));
+                float2 node_1015 = i.uv0;
+                float4 node_768 = tex2D(_FogTexture,TRANSFORM_TEX(node_1015.rg, _FogTexture));
                 float3 emissive = node_768.rgb;
                 float3 finalColor = emissive;
-                float node_1010 = (1.0 - tex2D(_HitpointMap,TRANSFORM_TEX(node_1076.rg, _HitpointMap)).g);
+                float node_1010 = (1.0 - tex2D(_HitpointMap,TRANSFORM_TEX(node_1015.rg, _HitpointMap)).g);
 /// Final Color:
                 return fixed4(finalColor,node_1010);
             }
