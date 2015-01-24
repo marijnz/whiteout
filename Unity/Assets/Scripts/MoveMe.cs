@@ -8,12 +8,15 @@ public class MoveMe : MonoBehaviour {
 	KeyCode moveDown = KeyCode.S;
 	KeyCode moveRight = KeyCode.D;
 	KeyCode moveLeft = KeyCode.A;
+	private int impendingDoom = 0;
 	
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
+	void OnCollisionEnter2D(Collision2D collision){
+		impendingDoom++;
+	}
 	// Update is called once per frame
 	void Update () {
         float moveX = CustomInputManager.GetAxis(CustomInputManager.Token.HorizontalMove, 1) * moveSpeed * Time.deltaTime;
@@ -30,5 +33,7 @@ public class MoveMe : MonoBehaviour {
 		if(CustomInputManager.ButtonGotPressed(CustomInputManager.Token.Interact, 1)){
 			print ("What do we do now?");
 		}
+		if (impendingDoom > 5)
+			Application.LoadLevel ("GameOver");
 	}
 }
