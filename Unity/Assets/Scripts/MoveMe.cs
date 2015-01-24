@@ -37,7 +37,7 @@ public class MoveMe : MonoBehaviour {
 		if(CustomInputManager.ButtonGotPressed(CustomInputManager.Token.Interact, 1)){
 			print ("What do we do now?");
 		}
-		//if (impendingDoom > 5)
-		//	Application.LoadLevel ("GameOver");
+		if (impendingDoom > 5)
+			Application.LoadLevel ("GameOver");
 	}
 }
