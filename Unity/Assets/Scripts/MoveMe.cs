@@ -9,9 +9,8 @@ public class MoveMe : MonoBehaviour {
 	KeyCode moveRight = KeyCode.D;
 	KeyCode moveLeft = KeyCode.A;
 	private int impendingDoom = 0;
-
-    public int MaxHits = 50;
-	
+	private float angle;
+    public int MaxHits = 50;	
 	// Use this for initialization
 	void Start () {
 		
@@ -37,6 +36,9 @@ public class MoveMe : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+		if(GetComponent<Rigidbody2D>().velocity.x != 0.0f || GetComponent<Rigidbody2D>().velocity.y != 0.0f)
+			angle = Mathf.Atan2 (moveX, -moveY) * Mathf.Rad2Deg;
+		GetComponent<Rigidbody2D> ().rotation = angle;
 		if(CustomInputManager.ButtonGotPressed(CustomInputManager.Token.Interact, 1)){
 			print ("What do we do now?");
 		}
