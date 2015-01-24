@@ -1,0 +1,7 @@
+Walk around
+Collision reveals part of the level
+Reaching certain predetermined objects reveals part of yourself
+You can die in order to progress but you lose everything you revealed so far
+Reaching the suicide note means finding out what's REALLY going on
+If you die after you read the suicide note you lose the game
+If you move to the exit after you read the suicide note you win the game
