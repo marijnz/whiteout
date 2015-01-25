@@ -15,7 +15,11 @@ public class Avatar : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision) {
         impendingDoom++;
+        AudioManager.Instance.Play("Fainting", transform.position);
+
         if (impendingDoom > MaxImpendingDoom) {
+            //AudioManager.Instance.Play("Fainting", transform.position);
+
             GameManager.Instance.AvatarGotKilled();
             Destroy(this.gameObject);
         }
