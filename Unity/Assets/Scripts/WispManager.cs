@@ -52,6 +52,7 @@ public class WispManager : MonoBehaviour {
 
     public void RemoveWisp()
     {
+        if (wisps.Count == 0) { return; }
         int wispIndex = Random.Range(0, wisps.Count-1);
         wisps[wispIndex].Kill();
         wisps.RemoveAt(wispIndex);

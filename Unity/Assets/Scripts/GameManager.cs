@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour {
     IEnumerator RestartRoomAfterTtime(float delayInSeconds) {
         yield return new WaitForSeconds(delayInSeconds);
         if ((AvatarsLeft - 1) < 0) {
-            Application.LoadLevel("GameOver");
+            StartCoroutine(ShowRoom(true));
+            yield break;
         }
 
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
@@ -82,7 +83,7 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(ShowRoom());
     }
 
-    IEnumerator ShowRoom() {
+    IEnumerator ShowRoom(bool failed = false) {
         float time = 0;
         while (time < 1) {
             time += Time.deltaTime * 0.7f;
@@ -98,11 +99,15 @@ public class GameManager : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", 0);
-        CurrentRoom.gameObject.SetActive(false);
 
-        FOWRenderTextureCamera.Instance.ResetFogOfWar();
-        SpawnFootprints.Instance.ClearBlood();
-        LoadRoom(++currentRoomId);
+        if (failed) {
+            Application.LoadLevel("GameOver");
+        } else {
+            CurrentRoom.gameObject.SetActive(false);
+            FOWRenderTextureCamera.Instance.ResetFogOfWar();
+            SpawnFootprints.Instance.ClearBlood();
+            LoadRoom(++currentRoomId);
+        }
     }
 
     void LoadRoom(int id) {
