@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Footprint : MonoBehaviour {
 
+    public bool shouldFade = false;
 	public float fadeTime = 1.5f;
 	private float time;
 	private float fade = 0.0f;
@@ -10,20 +11,25 @@ public class Footprint : MonoBehaviour {
 	Color originalColor;
 	Color transparentColor;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		originalColor = transform.renderer.material.color;
 		transparentColor = new Color (originalColor.r, originalColor.g, originalColor.b, Color.clear.a);
 		setTime ();
 	}
-	public void setTime()	{
+
+	public void setTime()
+    {
 		time = Time.time;
 	}
-	public void killFootprint (){
+	public void killFootprint ()
+    {
 		Destroy (this.gameObject);
 	}
-	// Update is called once per frame
-	void Update () {
+
+	void Update ()
+    {
+        if (!shouldFade) return;
 		float elapsedTime = Time.time - time;
 		if(elapsedTime > fadeTime)
 			fade += Time.deltaTime;

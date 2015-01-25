@@ -11,7 +11,6 @@ public class MoveMe : MonoBehaviour {
 	private int impendingDoom = 0;
 	private float angle;
     public int MaxHits = 50;
-    public GameObject BloodSpatter;
 
 	void Start () {
 		
@@ -22,12 +21,11 @@ public class MoveMe : MonoBehaviour {
 
         HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point);
 
-        GameObject blood = (GameObject)Instantiate(BloodSpatter);
-        blood.transform.position = new Vector3(collision.contacts[0].point.x, collision.contacts[0].point.y, -0.2f);
         Vector2 direction = new Vector2(transform.position.x, transform.position.y) - collision.contacts[0].point;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        GetComponent<BloodSpatterSpawner>().Spawn(new Vector3(collision.contacts[0].point.x, collision.contacts[0].point.y, -0.2f), angle);
 
-        blood.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        GetComponent<SpawnFootprints>().StartSpawning();
 	}
 
 
