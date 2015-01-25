@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour {
     Avatar currentAvatar;
     int currentRoomId;
 
+
+    public bool IsSwitchingLevel = false;
+
     float delay = 0f;
 
 	void Awake () {
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour {
     }*/
 
     public void RoomGotCompleted() {
-        
+        IsSwitchingLevel = true;
         foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
             Destroy(hitpoint.gameObject);
         }
@@ -132,6 +135,7 @@ public class GameManager : MonoBehaviour {
         }
        
         currentRoomCorpses = new List<Corpse>();
+        IsSwitchingLevel = false;
     }
 
     void SpawnCorpse(Vector2 pos) {

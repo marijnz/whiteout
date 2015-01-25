@@ -19,6 +19,9 @@ public class MoveMe : MonoBehaviour
 
 	void Update ()
     {
+        if (GameManager.Instance.IsSwitchingLevel) {
+            return;
+        }
         float moveX = CustomInputManager.GetAxis(CustomInputManager.Token.HorizontalMove, 1) * moveSpeed * Time.deltaTime;
         float moveY = CustomInputManager.GetAxis(CustomInputManager.Token.VerticalMove, 1) * moveSpeed * Time.deltaTime;
      //  if (moveX != 0 || moveY != 0)
