@@ -5,7 +5,6 @@ public class HitpointManager : MonoBehaviour {
 
     public static HitpointManager Instance;
 
-
     [SerializeField]
     Hitpoint HitpointPrefab;
 
@@ -26,9 +25,9 @@ public class HitpointManager : MonoBehaviour {
         SpawnHitPoint(SpawnAt);
     }
 
-    public void SpawnHitPoint(Vector2 position) {
+    public void SpawnHitPoint(Vector2 position, float maxDistance = 300 ) {
         Hitpoint hitpoint = Instantiate(HitpointPrefab) as Hitpoint;
         hitpoint.transform.position = position;
-        hitpoint.Spawn();
+        hitpoint.Spawn(maxDistance);
     }
 }
