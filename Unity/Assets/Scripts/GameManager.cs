@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void AvatarGotKilled() {
+        SpawnFootprints.Instance.ClearBlood();
         SpawnCorpse(currentAvatar.transform.position);
         StartCoroutine(RestartRoomAfterTtime(1.0f));
     }
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void RoomGotCompleted() {
+        SpawnFootprints.Instance.ClearBlood();
         CurrentRoom.gameObject.SetActive(false);
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
         LoadRoom(++currentRoomId);
@@ -74,6 +76,10 @@ public class GameManager : MonoBehaviour {
         CurrentRoom.gameObject.SetActive(true);
         if (currentAvatar != null) {
             currentAvatar.transform.position = CurrentRoom.SpawnLocation;
+            Vector3 newPos = currentAvatar.transform.position;
+            newPos.z = -3;
+            currentAvatar.transform.position = newPos;
+
             currentAvatar.ResetImpendingDoom();
         } else {
             SpawnAvatar(CurrentRoom.SpawnLocation);
