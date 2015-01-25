@@ -80,6 +80,25 @@ public class GameManager : MonoBehaviour {
             Destroy(hitpoint.gameObject);
         }
         CurrentRoom.gameObject.SetActive(false);
+        StartCoroutine(ShowRoom());
+    }
+
+    IEnumerator ShowRoom() {
+        float time = 0;
+        while (time < 1) {
+            time += Time.deltaTime * 0.7f;
+            FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", Mathf.Lerp(0, -0.3f, time));
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(1.5f);
+        time = 0;
+        while (time < 1) {
+            time += Time.deltaTime * 0.7f;
+            FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", Mathf.Lerp(-0.3f, 1, time));
+            yield return new WaitForEndOfFrame();
+        }
+
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
         LoadRoom(++currentRoomId);
     }

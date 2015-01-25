@@ -15,7 +15,6 @@ public class Hitpoint : MonoBehaviour {
 
     public void SpawnAgainIfAllowed() {
         if (respawnOnLevelReset) {
-            Debug.Log("SPAWNING AGAIN");
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
             isSpawning = true;
             hasSpawnedBefore = true;
