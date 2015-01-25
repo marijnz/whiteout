@@ -15,19 +15,15 @@ public class Avatar : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision) {
         impendingDoom++;
-        HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 200);
+        if (impendingDoom > MaxImpendingDoom) {
+            GameManager.Instance.AvatarGotKilled();
+            Destroy(this.gameObject);
+        }
+
+        HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.30f);
     }
 
     void Update() {
-        if (impendingDoom > MaxImpendingDoom) {
-            StartCoroutine(StartDying());
-        }
+        
     }
-
-    IEnumerator StartDying() {
-        yield return new WaitForSeconds(1f);
-        GameManager.Instance.AvatarGotKilled();
-        Destroy(this.gameObject);
-    }
-
 }
