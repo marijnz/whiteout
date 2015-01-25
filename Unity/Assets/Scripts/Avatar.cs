@@ -36,11 +36,15 @@ public class Avatar : MonoBehaviour {
         if (impendingDoom > MaxImpendingDoom) {
             //AudioManager.Instance.Play("Fainting", transform.position);
 
+            HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.40f, true);
+
             GameManager.Instance.AvatarGotKilled();
             Destroy(this.gameObject);
+        } else {
+            HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.40f);
         }
 
-        HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.30f);
+       
     }
 
     void Update() {

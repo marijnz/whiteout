@@ -25,14 +25,14 @@ public class HitpointManager : MonoBehaviour {
         SpawnHitPoint(SpawnAt, 300);
     }
 
-    public void SpawnHitPoint(Vector2 position, float maxDistance) {
-        StartCoroutine(GoSpawnHitPoint(position, maxDistance));
+    public void SpawnHitPoint(Vector2 position, float maxDistance, bool respawnOnLevelReset = false) {
+        StartCoroutine(GoSpawnHitPoint(position, maxDistance, respawnOnLevelReset));
     }
 
-    IEnumerator GoSpawnHitPoint(Vector2 position, float maxDistance) {
+    IEnumerator GoSpawnHitPoint(Vector2 position, float maxDistance, bool respawnOnLevelReset) {
         yield return new WaitForEndOfFrame();
         Hitpoint hitpoint = Instantiate(HitpointPrefab) as Hitpoint;
         hitpoint.transform.position = position;
-        hitpoint.Spawn(maxDistance);
+        hitpoint.Spawn(maxDistance, respawnOnLevelReset);
     }
 }

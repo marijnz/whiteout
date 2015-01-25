@@ -10,9 +10,25 @@ public class Hitpoint : MonoBehaviour {
     bool isSpawning = false;
     bool hasRendered = false;
 
+    bool respawnOnLevelReset = false;
+    bool hasSpawnedBefore = false;
+
+    public void SpawnAgainIfAllowed() {
+        if (respawnOnLevelReset) {
+            Debug.Log("SPAWNING AGAIN");
+            this.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            isSpawning = true;
+            hasSpawnedBefore = true;
+        }
+    }
+
 	void Update () {
         if (hasRendered) {
-            DestroyImmediate(this.gameObject);
+            if (respawnOnLevelReset) {
+                this.gameObject.GetComponent < MeshRenderer>().enabled = false;
+            } else {
+                DestroyImmediate(this.gameObject);
+            }
             return;
         }
 
@@ -23,9 +39,11 @@ public class Hitpoint : MonoBehaviour {
         
         elapsedTime += Time.deltaTime * 5;
 
-        Vector2 center = new Vector2(texture.width / 2, texture.height / 2);
+        if (hasSpawnedBefore) {
+            elapsedTime = growingTime;
+        }
 
-      //  List<Color> colors = new List<Color>();
+        Vector2 center = new Vector2(texture.width / 2, texture.height / 2);
 
         for (int y = 0; y < texture.height; y++) {
             for (int x = 0; x < texture.width; x++) {
@@ -37,13 +55,11 @@ public class Hitpoint : MonoBehaviour {
         renderer.material.mainTexture = texture;
       //  texture.SetPixels32
 
-
         texture.Apply();
 
         if (elapsedTime >= growingTime) {
             isSpawning = false;
             hasRendered = true;
-           
         }
 	}
 
@@ -51,8 +67,9 @@ public class Hitpoint : MonoBehaviour {
 
     }
 
-    public void Spawn(float scale) {
+    public void Spawn(float scale, bool respawnOnLevelReset = false) {
         this.transform.localScale = Vector3.one * scale;
         isSpawning = true;
+        this.respawnOnLevelReset = respawnOnLevelReset;
     }
 }

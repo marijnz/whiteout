@@ -37,7 +37,13 @@ public class GameManager : MonoBehaviour {
     public void AvatarGotKilled() {
         SpawnFootprints.Instance.ClearBlood();
         SpawnCorpse(currentAvatar.transform.position);
+
+      //  foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
+      //      hitpoint.FadeOutIfAllowed();
+      //  }
+
         StartCoroutine(RestartRoomAfterTtime(1.0f));
+        
     }
 
     IEnumerator RestartRoomAfterTtime(float delayInSeconds) {
@@ -45,24 +51,34 @@ public class GameManager : MonoBehaviour {
         if ((AvatarsLeft - 1) < 0) {
             Application.LoadLevel("GameOver");
         }
-        
+
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
+
+         foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
+             hitpoint.SpawnAgainIfAllowed();
+         }
+
         SpawnAvatar(CurrentRoom.SpawnLocation);
+
+       
 
         delay = 0.1f;
     }
-
+    /*
     void Update() {
-        if (delay != 0 && (delay += Time.deltaTime) >= 0.8f) {
+        if (delay != 0 && (delay += Time.deltaTime) >= 0.1f) {
             delay = 0;
             foreach (Corpse corpse in currentRoomCorpses) {
                 HitpointManager.Instance.SpawnHitPoint((Vector2)corpse.transform.position, 0.40f);
             }
         }
-    }
+    }*/
 
     public void RoomGotCompleted() {
         SpawnFootprints.Instance.ClearBlood();
+        foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
+            Destroy(hitpoint.gameObject);
+        }
         CurrentRoom.gameObject.SetActive(false);
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
         LoadRoom(++currentRoomId);

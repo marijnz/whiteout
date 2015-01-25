@@ -54,7 +54,7 @@ public class SpawnFootprints : MonoBehaviour {
         tempFootprint.transform.parent = holder.transform;
 
         Color c = tempFootprint.renderer.material.color;
-        c.a = 1 - spawningFor / stopSpawningAfter;
+        c.a = 1 - spawningFor / stopSpawningAfter - 0.3f;
         tempFootprint.renderer.material.color = c;
     }
 
