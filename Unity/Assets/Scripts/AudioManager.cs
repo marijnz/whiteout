@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour {
             go.transform.position = position;
             go.AddComponent<AudioSource>();
             go.audio.loop = true;
+            go.audio.volume = audioContainer.Volume;
             go.audio.clip = audioContainer.AudioClip;
             go.audio.Play();
         } else {

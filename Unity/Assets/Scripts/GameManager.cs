@@ -27,7 +27,13 @@ public class GameManager : MonoBehaviour {
 
 	void Awake () {
         Instance = this;
+        WispManager.Instance.InitializeWisps(AvatarsLeft);
+
+
         LoadRoom(0);
+
+        AudioManager.Instance.Play("Anthem", this.transform.position);
+
 	}
 
     public void AvatarGotKilled() {
@@ -97,6 +103,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void SpawnAvatar(Vector2 pos) {
+        WispManager.Instance.RemoveWisp();
         AvatarsLeft--;
         Avatar tempAvatar = Instantiate(AvatarPrefab) as Avatar;
         Vector3 newPos = pos;
