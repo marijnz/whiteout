@@ -27,15 +27,13 @@ public class GameManager : MonoBehaviour {
 
 	void Awake () {
         Instance = this;
-        WispManager.Instance.InitializeWisps(AvatarsLeft);
-
-
-        LoadRoom(0);
-
-        AudioManager.Instance.Play("Anthem", this.transform.position);
-
 	}
 
+    void Start() {
+        WispManager.Instance.InitializeWisps(AvatarsLeft);
+        LoadRoom(0);
+        AudioManager.Instance.Play("Anthem", this.transform.position);
+    }
     public void AvatarGotKilled() {
         SpawnFootprints.Instance.ClearBlood();
         SpawnCorpse(currentAvatar.transform.position);
@@ -58,7 +56,7 @@ public class GameManager : MonoBehaviour {
         if (delay != 0 && (delay += Time.deltaTime) >= 0.8f) {
             delay = 0;
             foreach (Corpse corpse in currentRoomCorpses) {
-                HitpointManager.Instance.SpawnHitPoint((Vector2)corpse.transform.position, 0.30f);
+                HitpointManager.Instance.SpawnHitPoint((Vector2)corpse.transform.position, 0.40f);
             }
         }
     }
