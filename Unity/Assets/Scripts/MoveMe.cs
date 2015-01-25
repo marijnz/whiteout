@@ -20,6 +20,7 @@ public class MoveMe : MonoBehaviour
 	void Update ()
     {
         if (GameManager.Instance.IsSwitchingLevel) {
+            AvatarAnimator.setWalkAnim(false);
             return;
         }
         float moveX = CustomInputManager.GetAxis(CustomInputManager.Token.HorizontalMove, 1) * moveSpeed * Time.deltaTime;
