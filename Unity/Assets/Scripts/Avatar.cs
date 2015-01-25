@@ -43,7 +43,7 @@ public class Avatar : MonoBehaviour {
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 GetComponent<MoveMe>().enabled = false;
             }
-            HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.40f, true);
+            HitpointManager.Instance.SpawnHitPoint(transform.position, 0.45f, true);
         } else {
             HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.40f);
         }

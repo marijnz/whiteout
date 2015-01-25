@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour {
         LoadRoom(0);
         AudioManager.Instance.Play("Anthem", this.transform.position);
     }
-    public void AvatarGotKilled() {
+    public void AvatarGotKilled()
+{
         SpawnFootprints.Instance.ClearBlood();
         SpawnCorpse(currentAvatar.transform.position);
 
