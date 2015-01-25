@@ -10,7 +10,7 @@ public class SpawnFootprints : MonoBehaviour {
     public float firstFootprintOffset = 0.1f;
     public float stopSpawningAfter = 3.0f;
 	public GameObject footprintPrefab;
-    bool isSpawning = false;
+    public bool isSpawning = false;
     bool isFirstFootprint = false;
     float spawningFor = 0;
     public GameObject holder;

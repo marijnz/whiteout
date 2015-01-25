@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour {
 
     public void RoomGotCompleted() {
         IsSwitchingLevel = true;
+        FindObjectOfType<SpawnFootprints>().isSpawning = false;
         foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
             Destroy(hitpoint.gameObject);
         }
