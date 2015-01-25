@@ -27,9 +27,13 @@ public class GameManager : MonoBehaviour {
 
 	void Awake () {
         Instance = this;
-        LoadRoom(0);
 	}
 
+    void Start() {
+        WispManager.Instance.InitializeWisps(AvatarsLeft);
+        LoadRoom(0);
+        AudioManager.Instance.Play("Anthem", this.transform.position);
+    }
     public void AvatarGotKilled() {
         SpawnFootprints.Instance.ClearBlood();
         SpawnCorpse(currentAvatar.transform.position);
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour {
         if (delay != 0 && (delay += Time.deltaTime) >= 0.8f) {
             delay = 0;
             foreach (Corpse corpse in currentRoomCorpses) {
-                HitpointManager.Instance.SpawnHitPoint((Vector2)corpse.transform.position, 0.30f);
+                HitpointManager.Instance.SpawnHitPoint((Vector2)corpse.transform.position, 0.40f);
             }
         }
     }
@@ -76,6 +80,10 @@ public class GameManager : MonoBehaviour {
         CurrentRoom.gameObject.SetActive(true);
         if (currentAvatar != null) {
             currentAvatar.transform.position = CurrentRoom.SpawnLocation;
+            Vector3 newPos = currentAvatar.transform.position;
+            newPos.z = -3;
+            currentAvatar.transform.position = newPos;
+
             currentAvatar.ResetImpendingDoom();
         } else {
             SpawnAvatar(CurrentRoom.SpawnLocation);
@@ -93,6 +101,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void SpawnAvatar(Vector2 pos) {
+        WispManager.Instance.RemoveWisp();
         AvatarsLeft--;
         Avatar tempAvatar = Instantiate(AvatarPrefab) as Avatar;
         Vector3 newPos = pos;
