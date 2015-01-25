@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Avatar : MonoBehaviour {
-
+	public AvatarAnim AvatarAnimator;
+	bool dead;
 
     [SerializeField] int MaxImpendingDoom = 50;
 
@@ -12,10 +13,9 @@ public class Avatar : MonoBehaviour {
 
     float lastHitTime;
 
-
-
     public void ResetImpendingDoom() {
         impendingDoom = 0;
+		dead = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -31,23 +31,21 @@ public class Avatar : MonoBehaviour {
         lastHitTime = Time.time;
 
         impendingDoom++;
+
         AudioManager.Instance.Play("Fainting", transform.position);
 
         if (impendingDoom > MaxImpendingDoom) {
-            //AudioManager.Instance.Play("Fainting", transform.position);
-
+            if (!dead)
+            {
+                AvatarAnimator.triggerDeathAnim();
+                dead = true;
+                GetComponent<BoxCollider2D>().enabled = false;
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GetComponent<MoveMe>().enabled = false;
+            }
             HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.40f, true);
-
-            GameManager.Instance.AvatarGotKilled();
-            Destroy(this.gameObject);
         } else {
             HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 0.40f);
         }
-
-       
-    }
-
-    void Update() {
-        
     }
 }
