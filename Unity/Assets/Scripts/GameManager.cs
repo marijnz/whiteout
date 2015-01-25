@@ -136,6 +136,10 @@ public class GameManager : MonoBehaviour {
             SpawnAvatar(CurrentRoom.SpawnLocation);
         }
        
+        foreach (Corpse c in currentRoomCorpses)
+        {
+            Destroy(c.gameObject);
+        }
         currentRoomCorpses = new List<Corpse>();
         IsSwitchingLevel = false;
     }
