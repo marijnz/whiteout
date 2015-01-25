@@ -4,17 +4,22 @@ using System.Collections;
 public class Avatar : MonoBehaviour {
 
 
-    [SerializeField] int MaxHits = 50;
+    [SerializeField] int MaxImpendingDoom = 50;
 
-    private int impendingDoom = 0;
+    int impendingDoom = 0;
+
+
+    public void ResetImpendingDoom() {
+        impendingDoom = 0;
+    }
 
     void OnCollisionEnter2D(Collision2D collision) {
         impendingDoom++;
-        HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point);
+        HitpointManager.Instance.SpawnHitPoint(collision.contacts[0].point, 200);
     }
 
     void Update() {
-        if (impendingDoom > MaxHits) {
+        if (impendingDoom > MaxImpendingDoom) {
             StartCoroutine(StartDying());
         }
     }

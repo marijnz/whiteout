@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 
     public Room CurrentRoom;
 
+    List<Corpse> currentRoomCorpses = new List<Corpse>();
     Avatar currentAvatar;
     int currentRoomId;
 
@@ -28,14 +29,21 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void AvatarGotKilled() {
-        AvatarsLeft--;
-        if (AvatarsLeft <= 0) {
+        if ((AvatarsLeft - 1) < 0) {
             Application.LoadLevel("GameOver");
         }
         SpawnCorpse(currentAvatar.transform.position);
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
         SpawnAvatar(CurrentRoom.SpawnLocation);
-        
+
+        StartCoroutine(SpawnCorpseHelpersAfterTime(2f));
+    }
+
+    IEnumerator SpawnCorpseHelpersAfterTime(float delayInSeconds) {
+        yield return new WaitForSeconds(delayInSeconds);
+        foreach (Corpse corpse in currentRoomCorpses) {
+            HitpointManager.Instance.SpawnHitPoint((Vector2) corpse.transform.position, 300);
+        }
     }
 
     public void RoomGotCompleted() {
@@ -56,19 +64,28 @@ public class GameManager : MonoBehaviour {
         CurrentRoom.gameObject.SetActive(true);
         if (currentAvatar != null) {
             currentAvatar.transform.position = CurrentRoom.SpawnLocation;
+            currentAvatar.ResetImpendingDoom();
         } else {
             SpawnAvatar(CurrentRoom.SpawnLocation);
         }
+       
+        currentRoomCorpses = new List<Corpse>();
     }
 
     void SpawnCorpse(Vector2 pos) {
         Corpse tempCorpse = Instantiate(CorpsePrefab) as Corpse;
-        tempCorpse.transform.position = pos;
+        Vector3 newPos = pos;
+        newPos.z = -3;
+        tempCorpse.transform.position = newPos;
+        currentRoomCorpses.Add(tempCorpse);
     }
 
     void SpawnAvatar(Vector2 pos) {
+        AvatarsLeft--;
         Avatar tempAvatar = Instantiate(AvatarPrefab) as Avatar;
-        tempAvatar.transform.position = pos;
+        Vector3 newPos = pos;
+        newPos.z = -3;
+        tempAvatar.transform.position = newPos;
         currentAvatar = tempAvatar;
     }
 
