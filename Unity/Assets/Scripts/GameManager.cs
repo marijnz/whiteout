@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Loading room: " + id);
         CurrentRoom = Rooms[id];
         currentRoomId = id;
-
+        StartCoroutine(LittleDelayInShowingLevel(id));
         CurrentRoom.gameObject.SetActive(true);
         if (currentAvatar != null) {
             currentAvatar.transform.position = CurrentRoom.SpawnLocation;
@@ -142,6 +142,11 @@ public class GameManager : MonoBehaviour {
         }
         currentRoomCorpses = new List<Corpse>();
         IsSwitchingLevel = false;
+    }
+
+    IEnumerator LittleDelayInShowingLevel(int levelId) {
+        yield return new WaitForSeconds(0.5f);
+        LevelShower.Instance.ShowLevel(levelId);
     }
 
     void SpawnCorpse(Vector2 pos) {

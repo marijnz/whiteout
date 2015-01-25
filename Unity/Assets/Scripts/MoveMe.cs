@@ -21,6 +21,7 @@ public class MoveMe : MonoBehaviour
     {
         if (GameManager.Instance.IsSwitchingLevel) {
             AvatarAnimator.setWalkAnim(false);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             return;
         }
         float moveX = CustomInputManager.GetAxis(CustomInputManager.Token.HorizontalMove, 1) * moveSpeed * Time.deltaTime;
