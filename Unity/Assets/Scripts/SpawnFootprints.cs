@@ -66,13 +66,11 @@ public class SpawnFootprints : MonoBehaviour {
         spawningFor = 0;
     }
 
-    public void DecreaseAlpha ()
+    public void ClearBlood ()
     {
         foreach (Transform child in holder.transform)
         {
-            Color c = child.renderer.material.color;
-            c.a = c.a / 8;
-            child.renderer.material.color = c;
+            Destroy(child.gameObject);
         }
     }
 }

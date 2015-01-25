@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class Hitpoint : MonoBehaviour {
 
-    public float MaxDistance;
-
     float elapsedTime = 0;
     float growingTime = 1f;
 
@@ -15,14 +13,16 @@ public class Hitpoint : MonoBehaviour {
 	void Update () {
         if (hasRendered) {
             DestroyImmediate(this.gameObject);
+            return;
         }
-        if (!isSpawning) { return; }
-        Texture2D texture = new Texture2D((int) MaxDistance * 2 + 2, (int) MaxDistance * 2 + 2);
-       
-        renderer.material.mainTexture = texture;
 
-        elapsedTime += Time.deltaTime;
-        elapsedTime = growingTime;
+        if (!isSpawning) { return; }
+
+        float MaxDistance = 10;
+        Texture2D texture = new Texture2D((int) MaxDistance * 2 + 2, (int) MaxDistance * 2 + 2);
+        
+        elapsedTime += Time.deltaTime * 5;
+
         Vector2 center = new Vector2(texture.width / 2, texture.height / 2);
 
       //  List<Color> colors = new List<Color>();
@@ -34,7 +34,7 @@ public class Hitpoint : MonoBehaviour {
                 texture.SetPixel(x, y, new Color(0, 1, 0, amountOfGreen));
             }
         }
-
+        renderer.material.mainTexture = texture;
       //  texture.SetPixels32
 
 
@@ -42,17 +42,17 @@ public class Hitpoint : MonoBehaviour {
 
         if (elapsedTime >= growingTime) {
             isSpawning = false;
+            hasRendered = true;
            
         }
-        hasRendered = true;
 	}
 
     void OnPostRender() {
 
     }
 
-    public void Spawn(float maxDistance) {
-        this.MaxDistance = maxDistance;
+    public void Spawn(float scale) {
+        this.transform.localScale = Vector3.one * scale;
         isSpawning = true;
     }
 }

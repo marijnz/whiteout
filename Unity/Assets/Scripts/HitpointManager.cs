@@ -22,10 +22,15 @@ public class HitpointManager : MonoBehaviour {
 
     [ContextMenu("Spawn")]
     void OnMouseDown() {
-        SpawnHitPoint(SpawnAt);
+        SpawnHitPoint(SpawnAt, 300);
     }
 
-    public void SpawnHitPoint(Vector2 position, float maxDistance = 300 ) {
+    public void SpawnHitPoint(Vector2 position, float maxDistance) {
+        StartCoroutine(GoSpawnHitPoint(position, maxDistance));
+    }
+
+    IEnumerator GoSpawnHitPoint(Vector2 position, float maxDistance) {
+        yield return new WaitForEndOfFrame();
         Hitpoint hitpoint = Instantiate(HitpointPrefab) as Hitpoint;
         hitpoint.transform.position = position;
         hitpoint.Spawn(maxDistance);
