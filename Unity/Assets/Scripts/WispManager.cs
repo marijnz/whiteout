@@ -8,10 +8,10 @@ public class WispManager : MonoBehaviour {
 
     public Wisp WispPrefab;
 
-    public Transform UpperLeft;
-    public Transform LowerLeft;
-    public Transform UpperRight;
-    public Transform LowerRight;
+    public WispWaypoint UpperLeft;
+    public WispWaypoint LowerLeft;
+    public WispWaypoint UpperRight;
+    public WispWaypoint LowerRight;
 
     List<Wisp> wisps = new List<Wisp>();
 
@@ -19,42 +19,39 @@ public class WispManager : MonoBehaviour {
         Instance = this;
     }
 
-    public void AskForNewDirection(Wisp wisp) {
-        
-    }
-
-    public void InitializeWisps(int amount) {
-        for (int i = 0; i < amount; i++) {
+    public void InitializeWisps(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
             Wisp tempWisp = Instantiate(WispPrefab) as Wisp;
             wisps.Add(tempWisp);
-            Vector3 zero = new Vector3(UpperLeft.transform.position.x, Random.Range(UpperLeft.transform.position.y, LowerLeft.transform.position.y), -10);
-            Vector3 one = new Vector3(UpperRight.transform.position.x, Random.Range(LowerRight.transform.position.y, UpperRight.transform.position.y), -10);
-            Vector3 two = new Vector3(Random.Range(UpperLeft.transform.position.x, UpperRight.transform.position.x), UpperLeft.transform.position.y, -10);
-            Vector3 three = new Vector3(Random.Range(LowerLeft.transform.position.x, LowerRight.transform.position.x), LowerLeft.transform.position.y, -10);
 
             int rand = Random.Range(0, 3);
-            switch (rand) {
+            switch (rand)
+            {
                 case 0:
-                    tempWisp.transform.position = zero;
-                    tempWisp.MoveTo(UpperLeft.transform.position);
+                    tempWisp.transform.position = UpperLeft.getPosition();
+                    tempWisp.MoveTo(UpperLeft.getNextWaypoint());
                     break;
                 case 1:
-                    tempWisp.transform.position = one;
-                    tempWisp.MoveTo(LowerRight.transform.position);
+                    tempWisp.transform.position = LowerRight.getPosition();;
+                    tempWisp.MoveTo(LowerRight.getNextWaypoint());
                     break;
                 case 2:
-                    tempWisp.transform.position = two;
-                    tempWisp.MoveTo(UpperRight.transform.position);
+                    tempWisp.transform.position = UpperRight.getPosition();;
+                    tempWisp.MoveTo(UpperRight.getNextWaypoint());
                     break;
                 case 3:
-                    tempWisp.transform.position = three;
-                    tempWisp.MoveTo(LowerLeft.transform.position);
+                    tempWisp.transform.position = LowerLeft.getPosition();;
+                    tempWisp.MoveTo(LowerLeft.getNextWaypoint());
                     break;
             }
+            tempWisp.JumpToRandomPositionOnLine();
         }
     }
 
-    public void RemoveWisp() {
+    public void RemoveWisp()
+    {
         int wispIndex = Random.Range(0, wisps.Count-1);
         wisps[wispIndex].Kill();
         wisps.RemoveAt(wispIndex);
