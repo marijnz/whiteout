@@ -16,7 +16,7 @@ public class BloodSpatterSpawner : MonoBehaviour {
         GameObject blood = (GameObject)Instantiate(BloodSpatters[Mathf.FloorToInt(Random.value * BloodSpatters.Length)]);
         blood.transform.position = new Vector3(position.x, position.y, -0.2f);
         blood.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        blood.transform.position += transform.up * -0.1f;
+        blood.transform.position += transform.up * -0.15f;
         blood.transform.parent = holder.transform;
     }
 }
