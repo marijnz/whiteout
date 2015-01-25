@@ -12,6 +12,15 @@ public class AvatarAnim : MonoBehaviour {
 	public void setWalkAnim(bool anim){
 		AvatarAnimator.SetBool ("Walk", anim);
 	}
+	public void triggerDeathAnim() {
+		AvatarAnimator.SetTrigger ("Death");
+		Debug.Log ("Death anim triggered");
+	}
+	public void OnDeathAnimationFinished()
+	{
+		GameManager.Instance.AvatarGotKilled();
+		Destroy (transform.parent.gameObject);
+	}
 
 	// Update is called once per frame
 	void Update () {
