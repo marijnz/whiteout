@@ -75,11 +75,10 @@ public class GameManager : MonoBehaviour {
     }*/
 
     public void RoomGotCompleted() {
-        SpawnFootprints.Instance.ClearBlood();
+        
         foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
             Destroy(hitpoint.gameObject);
         }
-        CurrentRoom.gameObject.SetActive(false);
         StartCoroutine(ShowRoom());
     }
 
@@ -98,8 +97,11 @@ public class GameManager : MonoBehaviour {
             FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", Mathf.Lerp(-0.3f, 1, time));
             yield return new WaitForEndOfFrame();
         }
+        FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", 0);
+        CurrentRoom.gameObject.SetActive(false);
 
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
+        SpawnFootprints.Instance.ClearBlood();
         LoadRoom(++currentRoomId);
     }
 

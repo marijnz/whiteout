@@ -75,9 +75,9 @@ Shader "Shader Forge/FogOfWar" {
                 float2 node_1120 = float2(((node_1038.r-(node_1124.g/_node_1185_copy))*(-1.77)),((node_1038.g+_node_1225_copy)+(node_1359.g/_node_1185_copy_copy)));
                 float3 emissive = saturate(( tex2D(_node_1016_copy,TRANSFORM_TEX(node_1120, _node_1016_copy)).rgb > 0.5 ? (1.0-(1.0-2.0*(tex2D(_node_1016_copy,TRANSFORM_TEX(node_1120, _node_1016_copy)).rgb-0.5))*(1.0-tex2D(_node_1016,TRANSFORM_TEX(node_1086, _node_1016)).rgb)) : (2.0*tex2D(_node_1016_copy,TRANSFORM_TEX(node_1120, _node_1016_copy)).rgb*tex2D(_node_1016,TRANSFORM_TEX(node_1086, _node_1016)).rgb) ));
                 float3 finalColor = emissive;
-                float2 node_1400 = i.uv0;
+                float2 node_1441 = i.uv0;
 /// Final Color:
-                return fixed4(finalColor,(_AlphaOveride+(1.0 - tex2D(_HitpointMap,TRANSFORM_TEX(node_1400.rg, _HitpointMap)).g)));
+                return fixed4(finalColor,(_AlphaOveride+(1.0 - tex2D(_HitpointMap,TRANSFORM_TEX(node_1441.rg, _HitpointMap)).g)));
             }
             ENDCG
         }
