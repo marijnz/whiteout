@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SpawnFootprints : MonoBehaviour {
 
+    public static SpawnFootprints Instance;
+
 	Vector3 lastfootprint;
     public float footprintOffset = 1.0f;
     public float firstFootprintOffset = 0.1f;
@@ -11,6 +13,13 @@ public class SpawnFootprints : MonoBehaviour {
     bool isSpawning = false;
     bool isFirstFootprint = false;
     float spawningFor = 0;
+    public GameObject holder;
+
+    void Awake ()
+    {
+        Instance = this;
+        holder = GameObject.Find("BloodHolder");
+    }
 
 	void Start ()
     {
@@ -22,6 +31,7 @@ public class SpawnFootprints : MonoBehaviour {
         if (!isSpawning) return;
 
 		Vector3 diff = transform.position - lastfootprint;
+        diff.z = 0;
 		float distance = diff.magnitude;
         if (distance > footprintOffset || isFirstFootprint && distance > firstFootprintOffset)
         {
@@ -41,6 +51,11 @@ public class SpawnFootprints : MonoBehaviour {
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         GameObject tempFootprint = (GameObject)Instantiate(footprintPrefab, transform.position, rotation);
         lastfootprint = transform.position;
+        tempFootprint.transform.parent = holder.transform;
+
+        Color c = tempFootprint.renderer.material.color;
+        c.a = 1 - spawningFor / stopSpawningAfter;
+        tempFootprint.renderer.material.color = c;
     }
 
     public void StartSpawning ()
@@ -49,5 +64,15 @@ public class SpawnFootprints : MonoBehaviour {
         isSpawning = true;
         isFirstFootprint = true;
         spawningFor = 0;
+    }
+
+    public void DecreaseAlpha ()
+    {
+        foreach (Transform child in holder.transform)
+        {
+            Color c = child.renderer.material.color;
+            c.a = c.a / 8;
+            child.renderer.material.color = c;
+        }
     }
 }

@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void AvatarGotKilled() {
+        SpawnFootprints.Instance.DecreaseAlpha();
+
         if ((AvatarsLeft - 1) < 0) {
             Application.LoadLevel("GameOver");
         }
@@ -36,7 +38,8 @@ public class GameManager : MonoBehaviour {
         FOWRenderTextureCamera.Instance.ResetFogOfWar();
         SpawnAvatar(CurrentRoom.SpawnLocation);
 
-        StartCoroutine(SpawnCorpseHelpersAfterTime(2f));
+        StartCoroutine(SpawnCorpseHelpersAfterTime(0.2f));
+
     }
 
     IEnumerator SpawnCorpseHelpersAfterTime(float delayInSeconds) {
