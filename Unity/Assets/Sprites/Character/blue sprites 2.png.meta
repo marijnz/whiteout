@@ -71,17 +71,17 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_1
       rect:
         serializedVersion: 2
-        x: 450
+        x: 452
         y: 455
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_2
       rect:
@@ -91,7 +91,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_3
       rect:
@@ -101,7 +101,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_4
       rect:
@@ -111,7 +111,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_5
       rect:
@@ -121,7 +121,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_6
       rect:
@@ -131,7 +131,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_7
       rect:
@@ -141,7 +141,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_8
       rect:
@@ -151,7 +151,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_9
       rect:
@@ -161,7 +161,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_10
       rect:
@@ -171,7 +171,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_11
       rect:
@@ -181,7 +181,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_12
       rect:
@@ -191,7 +191,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_13
       rect:
@@ -201,7 +201,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_14
       rect:
@@ -211,7 +211,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_15
       rect:
@@ -221,7 +221,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_16
       rect:
@@ -231,7 +231,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_17
       rect:
@@ -241,7 +241,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_18
       rect:
@@ -251,7 +251,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: blue sprites 2_19
       rect:
@@ -261,7 +261,7 @@ TextureImporter:
         width: 225
         height: 225
       alignment: 1
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
