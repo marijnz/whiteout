@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour {
         AudioContainer audioContainer = AudioContainerDict[name];
         if (audioContainer.Looping) {
             GameObject go = new GameObject();
+            DontDestroyOnLoad(go);
             go.transform.position = position;
             go.AddComponent<AudioSource>();
             go.audio.loop = true;

@@ -3,15 +3,17 @@ using System.Collections;
 
 public class TryAgain : MonoBehaviour {
 
-    // Use this for initialization
-    void Start() {
+    float timeEnabled = 0.0f;
 
+    void OnEnable() {
+        timeEnabled = 0.0f;
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.anyKeyDown) {
-            Application.LoadLevel("Main");
+        timeEnabled += Time.deltaTime;
+        if (timeEnabled > 2 && Input.anyKeyDown) {
+            GameManager.Instance.StartGame();
         }
     }
 }

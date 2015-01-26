@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour {
     [SerializeField] 
     int AvatarsLeft;
 
+    [SerializeField]
+    GameObject FailedCanvas;
+
+    [SerializeField]
+    GameObject FinishCanvas;
+
     public Room CurrentRoom;
 
     List<Corpse> currentRoomCorpses = new List<Corpse>();
@@ -33,13 +39,17 @@ public class GameManager : MonoBehaviour {
 	}
 
     void Start() {
+        StartGame();
+    }
+
+    public void StartGame() {
+        currentRoomId = 0;
         WispManager.Instance.InitializeWisps(AvatarsLeft);
         LoadRoom(0);
         AudioManager.Instance.Play("Anthem", this.transform.position);
     }
     public void AvatarGotKilled()
 {
-        SpawnFootprints.Instance.ClearBlood();
         SpawnCorpse(currentAvatar.transform.position);
 
       //  foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
@@ -63,6 +73,8 @@ public class GameManager : MonoBehaviour {
              hitpoint.SpawnAgainIfAllowed();
          }
 
+         SpawnFootprints.Instance.ClearBlood();
+
         SpawnAvatar(CurrentRoom.SpawnLocation);
 
        
@@ -83,7 +95,7 @@ public class GameManager : MonoBehaviour {
         IsSwitchingLevel = true;
         FindObjectOfType<SpawnFootprints>().isSpawning = false;
         foreach (Hitpoint hitpoint in FindObjectsOfType<Hitpoint>()) {
-            Destroy(hitpoint.gameObject);
+            DestroyImmediate(hitpoint.gameObject);
         }
         StartCoroutine(ShowRoom());
     }
@@ -99,27 +111,38 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         time = 0;
         while (time < 1) {
-            time += Time.deltaTime * 0.7f;
-            FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", Mathf.Lerp(-0.3f, 1, time));
+            time += Time.deltaTime * 1f;
+            FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", Mathf.Lerp(-0.3f, 2, time));
             yield return new WaitForEndOfFrame();
         }
         FogOfWarPlane.Instance.GetComponent<Renderer>().material.SetFloat("_AlphaOveride", 0);
 
+        SpawnFootprints.Instance.ClearBlood();
+        CurrentRoom.gameObject.SetActive(false);
+        FOWRenderTextureCamera.Instance.ResetFogOfWar();
+
+        Debug.Log("FAILED " + failed);
+
         if (failed) {
-            Application.LoadLevel("GameOver");
+            //Application.LoadLevel("GameOver");
+            FailedCanvas.SetActive(true);
         } else {
-            CurrentRoom.gameObject.SetActive(false);
-            FOWRenderTextureCamera.Instance.ResetFogOfWar();
-            SpawnFootprints.Instance.ClearBlood();
             LoadRoom(++currentRoomId);
         }
     }
 
     void LoadRoom(int id) {
+
         if (id >= Rooms.Count) {
-            Application.LoadLevel("Finish");
+           // Application.LoadLevel("Finish");
+            FinishCanvas.SetActive(true);
             return;
         }
+        Debug.Log(FinishCanvas.GetComponent<TryAgain>());
+        FinishCanvas.SetActive(false);
+        FailedCanvas.SetActive(false);
+
+
         Debug.Log("Loading room: " + id);
         CurrentRoom = Rooms[id];
         currentRoomId = id;
@@ -141,6 +164,8 @@ public class GameManager : MonoBehaviour {
             Destroy(c.gameObject);
         }
         currentRoomCorpses = new List<Corpse>();
+        FOWRenderTextureCamera.Instance.ResetFogOfWar();
+
         IsSwitchingLevel = false;
     }
 
