@@ -40,13 +40,13 @@ public class GameManager : MonoBehaviour {
 
     void Start() {
         StartGame();
+        AudioManager.Instance.Play("Anthem", this.transform.position);
     }
 
     public void StartGame() {
         currentRoomId = 0;
         WispManager.Instance.InitializeWisps(AvatarsLeft);
         LoadRoom(0);
-        AudioManager.Instance.Play("Anthem", this.transform.position);
     }
     public void AvatarGotKilled()
 {
