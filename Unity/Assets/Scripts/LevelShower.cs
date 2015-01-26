@@ -28,9 +28,6 @@ public class LevelShower : MonoBehaviour {
                 break;
             //this.GetComponent<SpriteRenderer>().sprite = Level1Sprite
         }
-        Debug.Log("SHOWING LEVEL");
         this.GetComponent<Fade>().FadeInOut();
     }
-
-
 }

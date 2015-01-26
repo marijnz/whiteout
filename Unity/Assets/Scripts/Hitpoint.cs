@@ -33,7 +33,7 @@ public class Hitpoint : MonoBehaviour {
 
         if (!isSpawning) { return; }
 
-        float MaxDistance = 10;
+        float MaxDistance = 20;
         Texture2D texture = new Texture2D((int) MaxDistance * 2 + 2, (int) MaxDistance * 2 + 2);
         
         elapsedTime += Time.deltaTime * 5;
