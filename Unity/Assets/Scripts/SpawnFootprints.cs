@@ -49,7 +49,7 @@ public class SpawnFootprints : MonoBehaviour {
     void spawn (float angle)
     {
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        GameObject tempFootprint = (GameObject)Instantiate(footprintPrefab, transform.position, rotation);
+        GameObject tempFootprint = (GameObject)Instantiate(footprintPrefab, transform.position + new Vector3(0, 0, 0.01f), rotation);
         lastfootprint = transform.position;
         tempFootprint.transform.parent = holder.transform;
 

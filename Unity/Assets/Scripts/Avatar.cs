@@ -24,7 +24,7 @@ public class Avatar : MonoBehaviour {
         if ((Time.time - lastHitTime) <= MinTimeBetweenHits) return;
         Vector2 direction = new Vector2(transform.position.x, transform.position.y) - collision.contacts[0].point;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        GetComponent<BloodSpatterSpawner>().Spawn(new Vector3(collision.contacts[0].point.x, collision.contacts[0].point.y, -0.2f), angle);
+        GetComponent<BloodSpatterSpawner>().Spawn(new Vector3(collision.contacts[0].point.x, collision.contacts[0].point.y, transform.position.z + 0.01f), angle);
 
         GetComponent<SpawnFootprints>().StartSpawning();
 

@@ -8,6 +8,7 @@ public class LevelShower : MonoBehaviour {
     public Sprite Level1Sprite;
     public Sprite Level2Sprite;
     public Sprite Level3Sprite;
+    public Sprite Level4Sprite;
 
 
 	// Use this for initialization
@@ -25,6 +26,9 @@ public class LevelShower : MonoBehaviour {
                 break;
             case 2:
                 this.GetComponent<SpriteRenderer>().sprite = Level3Sprite;
+                break;
+            case 3:
+                this.GetComponent<SpriteRenderer>().sprite = Level4Sprite;
                 break;
             //this.GetComponent<SpriteRenderer>().sprite = Level1Sprite
         }

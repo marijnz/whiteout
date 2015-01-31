@@ -55,6 +55,7 @@ MonoBehaviour:
   Level1Sprite: {fileID: 21300000, guid: 818c8f7410a32524eb39623707a6093f, type: 3}
   Level2Sprite: {fileID: 21300000, guid: d41a8937a173cf6478ad7371fe15fd1e, type: 3}
   Level3Sprite: {fileID: 21300000, guid: 1a79bc94d6fbdf148804b5cd5bf47dac, type: 3}
+  Level4Sprite: {fileID: 21300000, guid: 002080813cf9aee45bd6d2ae59166547, type: 3}
 --- !u!212 &21288498
 SpriteRenderer:
   m_ObjectHideFlags: 1

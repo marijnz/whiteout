@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 464464}
   - 212: {fileID: 21264464}
   - 114: {fileID: 11457618}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Footprint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.4120159, y: -3.43639374, z: -10}
+  m_LocalPosition: {x: -12.4120159, y: -3.43639374, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,7 +60,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 4021152993
+  m_SortingLayerID: 4156149239
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e66e92bc58b4d843b1fe06a5a3655a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
