@@ -32,8 +32,6 @@ public class GameManager : MonoBehaviour {
 
     public bool IsSwitchingLevel = false;
 
-    float delay = 0f;
-
 	void Awake () {
         Instance = this;
 	}
@@ -76,10 +74,6 @@ public class GameManager : MonoBehaviour {
          SpawnFootprints.Instance.ClearBlood();
 
         SpawnAvatar(CurrentRoom.SpawnLocation);
-
-       
-
-        delay = 0.1f;
     }
     /*
     void Update() {
