@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour {
 
     public void Play(string name, Vector3 position)
     {
+        Debug.Log(name);
         AudioContainer audioContainer = AudioContainerDict[name];
         if (audioContainer.Looping)
         {

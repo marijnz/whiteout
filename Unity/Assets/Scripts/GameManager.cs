@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour {
     void Start() {
         StartGame();
         AudioManager.Instance.Play("Anthem", this.transform.position);
-        AudioManager.Instance.Play("Breath", this.transform.position);
     }
 
     public void StartGame() {

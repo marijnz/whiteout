@@ -63,6 +63,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   AvatarsLeft: 8
   FailedCanvas: {fileID: 0}
   FinishCanvas: {fileID: 0}
