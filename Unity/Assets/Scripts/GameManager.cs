@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
     void Start() {
         StartGame();
         AudioManager.Instance.Play("Anthem", this.transform.position);
+        AudioManager.Instance.Play("Breath", this.transform.position);
     }
 
     public void StartGame() {
@@ -142,14 +143,19 @@ public class GameManager : MonoBehaviour {
         currentRoomId = id;
         StartCoroutine(LittleDelayInShowingLevel(id));
         CurrentRoom.gameObject.SetActive(true);
-        if (currentAvatar != null) {
+        if (currentAvatar != null)
+        {
             currentAvatar.transform.position = CurrentRoom.SpawnLocation;
             Vector3 newPos = currentAvatar.transform.position;
             newPos.z = -3;
             currentAvatar.transform.position = newPos;
 
             currentAvatar.ResetImpendingDoom();
-        } else {
+
+            AudioManager.Instance.Play("Door Opens", currentAvatar.transform.position);
+        }
+        else
+        {
             SpawnAvatar(CurrentRoom.SpawnLocation);
         }
        
@@ -184,6 +190,8 @@ public class GameManager : MonoBehaviour {
         newPos.z = -3;
         tempAvatar.transform.position = newPos;
         currentAvatar = tempAvatar;
+
+        AudioManager.Instance.Play("Door Opens", currentAvatar.transform.position);
     }
 
 

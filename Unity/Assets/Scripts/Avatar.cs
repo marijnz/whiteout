@@ -32,11 +32,13 @@ public class Avatar : MonoBehaviour {
 
         impendingDoom++;
 
-        AudioManager.Instance.Play("Fainting", transform.position);
+        AudioManager.Instance.Play("Puddle " + Mathf.CeilToInt(Random.value * 3), transform.position);
 
         if (impendingDoom > MaxImpendingDoom) {
             if (!dead)
             {
+                AudioManager.Instance.Play("Dying", transform.position);
+
                 AvatarAnimator.triggerDeathAnim();
                 dead = true;
                 GetComponent<CircleCollider2D>().enabled = false;

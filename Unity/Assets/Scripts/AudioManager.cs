@@ -29,9 +29,11 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    public void Play(string name, Vector3 position) {
+    public void Play(string name, Vector3 position)
+    {
         AudioContainer audioContainer = AudioContainerDict[name];
-        if (audioContainer.Looping) {
+        if (audioContainer.Looping)
+        {
             GameObject go = new GameObject();
             DontDestroyOnLoad(go);
             go.transform.position = position;
@@ -40,8 +42,22 @@ public class AudioManager : MonoBehaviour {
             go.audio.volume = audioContainer.Volume;
             go.audio.clip = audioContainer.AudioClip;
             go.audio.Play();
-        } else {
+        }
+        else
+        {
             AudioSource.PlayClipAtPoint(audioContainer.AudioClip, position, audioContainer.Volume);
         }
+    }
+
+    public void PlayDelayed (string name, Vector3 position, float delay)
+    {
+        StartCoroutine(Delayed(name, position, delay));
+    }
+
+    IEnumerator Delayed(string name, Vector3 position, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Play(name, position);
     }
 }
